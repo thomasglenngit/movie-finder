@@ -1,8 +1,10 @@
 export class MovieService {
-
   async getMovieSelection(movie) {
     try {
-      let response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.API_KEY}&query=${movie}`);
+      let response = await fetch(
+        `https://api.themoviedb.org/3/search/movie?api_key=${process.env.API_KEY}&query=${movie}`
+      );
+      // console.log("api run:" + response);
       let jsonifiedResponse;
       if (response.ok && response.status == 200) {
         jsonifiedResponse = await response.json();
@@ -10,7 +12,7 @@ export class MovieService {
         jsonifiedResponse = false;
       }
       return jsonifiedResponse;
-    } catch(error) {
+    } catch (error) {
       return false;
     }
   }
