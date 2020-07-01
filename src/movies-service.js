@@ -1,4 +1,5 @@
 export class MovieService {
+
   async getMovieSelection(movie) {
     try {
       let response = await fetch(
