@@ -9,6 +9,8 @@ $(document).ready(function () {
     event.preventDefault();
     let movie = $("#movieSearch").val();
     $("#movieSearch").val("");
+    $("#list").show();
+    $("#faveList").hide();
 
     let newResponse;
     let movieService = new MovieService();
@@ -22,23 +24,21 @@ $(document).ready(function () {
     function getElements(response, movie) {
       if (response) {
         newResponse = response;
-        $("#list").append(
-          `<li> The official title of ${movie} is ${response.results[0].title}</li>`
-        );
-        $("#list").append(
-          `<li> Here's what it's about: ${response.results[0].overview} <li>`
-        );
-        $("#list").append(`<img src=https://image.tmdb.org/t/p/w500${response.results[0].poster_path}></img>`);
+        $("#list").html(`<li> Here is your movie: ${movie} The official title is: ${response.results[0].title} ${response.results[0].overview}<br> <img src=https://image.tmdb.org/t/p/w500${response.results[0].poster_path} ></li>`);
+        
       } else {
         newResponse =  null;
-        $("#list").append(`"<li>" No movies for you!"</li>"`);
-        $("#list").append(
+        $("#list").html(`"<li>" No movies for you!"</li>"`);
+        $("#list").html(
           `<li> Please check your inputs and try again! </li>`
         );
       }
     }
     $("#add").click(function () {
       movieService.addMovieSelection(newResponse);
+      $("#faveList").show();
+      $("#list").hide();
+      $("#faveList").append(`<li>${newResponse.results[0].title}</li>`)
     });
   });
 
