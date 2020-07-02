@@ -1,4 +1,5 @@
 export class MovieService {
+
   constructor() {
   this.movieArray = [];
   }
@@ -21,31 +22,16 @@ export class MovieService {
     }
   }
 
+
   addMovieSelection(newResponse) {
     if (!newResponse) {
       return;
     } else {
-      this.movieArray.push(newResponse.results[0]);
-      console.log(this.movieArray);
+      // console.log("new:" + newResponse);
+      this.movieArray.push(newResponse.results[0].title);
       console.log(newResponse.results[0].title);
+      // console.log("This is our movie array as of the end of the addMovieSelection (it should contain all movies): " + this.movieArray);
+      // console.log(newResponse.results[0].title);
     }
   }
 }
-
-// promise.then(function(result) {
-//   return promise = new Promise(function(resolve, reject) {
-//     // do stuff
-//   });
-// })
-// .then(function(result2) {
-//     return promise2 = new Promise(function(resolve, reject) {
-//       // do more stuff
-//     });
-//   })
-
-// doAsync()
-//   .then doAsync()
-//   .then doAsync2()
-//   .then doAsync3()
-//   .then doAsync4()
-//   .then doAsync5()

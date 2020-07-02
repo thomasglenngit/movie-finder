@@ -4,6 +4,9 @@ import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
 
+let newResponse = null;
+let movieService = new MovieService();
+
 $(document).ready(function () {
   $("#movie-form").submit(function (event) {
     event.preventDefault();
@@ -11,12 +14,10 @@ $(document).ready(function () {
     $("#movieSearch").val("");
     $("#list").show();
     $("#faveList").hide();
-
-    let newResponse;
-    let movieService = new MovieService();
+    
 
     (async () => {
-      console.log(movieService.movieArray)
+      // console.log("this should contain all movies up to this point that we've added: " + movieService.movieArray);
       const response = await movieService.getMovieSelection(movie);
       getElements(response, movie);
     })();
@@ -24,6 +25,8 @@ $(document).ready(function () {
     function getElements(response, movie) {
       if (response) {
         newResponse = response;
+        // console.log(response)
+
         $("#list").html(`<li> Here is your movie: ${movie} The official title is: ${response.results[0].title} ${response.results[0].overview}<br> <img src=https://image.tmdb.org/t/p/w500${response.results[0].poster_path} ></li>`);
         
       } else {
@@ -34,12 +37,17 @@ $(document).ready(function () {
         );
       }
     }
-    $("#add").click(function () {
-      movieService.addMovieSelection(newResponse);
-      $("#faveList").show();
-      $("#list").hide();
-      $("#faveList").append(`<li>${newResponse.results[0].title}</li>`)
-    });
+    
   });
 
+  $("#add").click(function () {
+    movieService.addMovieSelection(newResponse);
+    console.log("This is the whole movie response: " + newResponse)
+    $("#faveList").show();
+    $("#list").hide();
+    $("#faveList").append(`<li>${newResponse.results[0].title}</li>`)
+    // $("#faveList").append(movieService.movieArray);
+    // console.log("This is the title of the newResponse: "
+    //   + newResponse.results[0].title);
+  });
 });
