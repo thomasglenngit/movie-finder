@@ -1,4 +1,8 @@
 export class MovieService {
+  constructor() {
+  this.movieArray = [];
+  }
+
   async getMovieSelection(movie) {
     try {
       let response = await fetch(
@@ -17,10 +21,14 @@ export class MovieService {
     }
   }
 
-  addMovieSelection() {
-    let addMovieArray = [];
-    addMovieArray.push(`${response.results[0].title}`);
-    console.log(addMovieArray);
+  addMovieSelection(newResponse) {
+    if (!newResponse) {
+      return;
+    } else {
+      this.movieArray.push(newResponse.results[0]);
+      console.log(this.movieArray);
+      console.log(newResponse.results[0].title);
+    }
   }
 }
 
