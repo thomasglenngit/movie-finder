@@ -1,4 +1,4 @@
-<h1 align='center'><img width='900' height='450' src='http://resizing.flixster.com/F-L8lszSDnzzZmsrKsXuf02ci48=/786x1048/dkpu1ddg7pbsk.cloudfront.net/movie/11/61/43/11614339_ori.jpg'><br>
+<h1 align='center'><img width='900' height='450' src='https://fanart.tv/fanart/movies/16441/moviethumb/the-beastmaster-5427fe90c9874.jpg'><br>
 
 
 **<h1 align = 'center'>Movie Finder**
